@@ -1,0 +1,26 @@
+{
+  "name": "mailsender",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nickchen2016/mailSender.git"
+  },
+  "author": "Nick Chen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nickchen2016/mailSender/issues"
+  },
+  "homepage": "https://github.com/Nickchen2016/mailSender#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "express-handlebars": "^3.0.0",
+    "nodemailer": "^4.6.8",
+    "path": "^0.12.7"
+  }
+}
