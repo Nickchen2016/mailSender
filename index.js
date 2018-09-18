@@ -21,4 +21,8 @@ app.get('*', (req,res)=> {
     res.sendFile(path.join(__dirname, './public/client.html'));
 });
 
+app.post('/send', (req,res)=>{
+    console.log('*******', req.body)
+})
+
 app.listen(3000, ()=> console.log('server started'));
