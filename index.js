@@ -1,5 +1,5 @@
 const express = require('express');
-// const expHandlebars = require('express-handlebars');
+const expHandlebars = require('express-handlebars');
 const path = require('path');
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
@@ -7,8 +7,8 @@ const nodemailer = require('nodemailer');
 const app = express();
 
 //view engine
-// app.engine('handlebars', expHandlebars());
-// app.set('view engine', 'handlebars');
+app.engine('handlebars', expHandlebars());
+app.set('view engine', 'handlebars');
 
 //static folder
 app.use('/public', express.static(path.join(__dirname, 'public')));
@@ -17,9 +17,13 @@ app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-app.get('*', (req,res)=> {
-    res.sendFile(path.join(__dirname, './public/client.html'));
-});
+// app.get('*', (req,res)=> {
+//     res.sendFile(path.join(__dirname, './public/client.html'));
+// });
+
+app.get('/', (req,res)=>{
+    res.render('client')
+})
 
 app.post('/send', (req,res)=>{
     console.log('*******', req.body)
@@ -45,7 +49,7 @@ app.post('/send', (req,res)=>{
 
     // setup email data with unicode symbols
     let mailOptions = {
-        from: '"Nodemailer contact" <fullstack.nick@gmail.com>', // sender address
+        from: `"Nodemailer contact" <${req.body.email}>`, // sender address
         to: 'fullstack.nick@gmail.com', // list of receivers
         subject: 'Hello World', // Subject line
         text: 'Hello world?!!!!!!', // plain text body
@@ -61,7 +65,7 @@ app.post('/send', (req,res)=>{
 
         console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
 
-        res.render('contact', {msg:'Email has been send'})
+        res.render('client', {msg:'Email has been send'})
     });
 })
 
