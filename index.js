@@ -3,6 +3,7 @@ const expHandlebars = require('express-handlebars');
 const path = require('path');
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
+require('./secret')
 
 const app = express();
 
@@ -40,7 +41,7 @@ app.post('/send', (req,res)=>{
         secure: false, // true for 465, false for other ports
         auth: {
             user: 'fullstack.nick@gmail.com', // generated ethereal user
-            pass: 'Welcome0820' // generated ethereal password
+            pass: process.env.pass // generated ethereal password
         },
         tls:{
             rejectUnauthorized: false
